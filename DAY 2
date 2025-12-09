@@ -1,0 +1,71 @@
+Q. Remove duplicates from a sorted array
+
+Solution:To remove duplicates from a sorted array,
+I go through the array one element at a time.
+I keep track of the last unique element I saw. Since the array is already sorted,
+all repeated elements come together. So, if the current element is the same as the last one,
+I skip it. If it’s different, I keep it. By doing this until the end,
+I get an array that has only unique elements.
+
+Code:
+ class main{
+    public static void main(String[] args){
+        int[] arr = {1, 1, 4, 4, 6, 7, 8, 8, 10, 10,11,11};
+        for (int i = 0; i < arr.length-1; i++) {
+            if (arr[i] == arr[i+1]) {
+                continue;
+            }
+            System.out.print(arr[i] + " ");
+        }
+        System.out.print(arr[arr.length-1]);
+    }
+}
+
+Explaination: To avoid an index-out-of-bounds error, I only iterate the array up to the second-last element.
+Inside the loop, I compare each element with the next one. If the two values are different,
+that means the current value is unique, so I print it.
+After the loop finishes, I separately print the last element of the array,
+because it isn’t compared inside the loop. This ensures that the final value is always included in the output,
+whether it is unique or repeated
+
+Q. Reverse an array
+
+Solution: To reverse an array, I don’t need to sort it.
+I just start from the last element and move backward toward the first element.
+By printing the elements from the end to the beginning, the array gets reversed.
+
+code:
+class main{
+    public static void main(String[] args){
+        int[] arr = {10, 5, 6, 8, 9, 0};
+        for (int i = arr.length-1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+
+Q. Count frequency of elements
+
+Solution: To count the frequency of each element in a sorted array,
+I iterate through the array only once. Since the array is already sorted, all duplicate elements appear next to each other.
+I start by initializing a count variable with 1 for the current element. As I move through the array,
+if the current element is the same as the next one, I simply increase the count. If the next element is different,
+it means that the duplicate group has ended, so I print the element along with its count and reset the count back to 1.
+After the loop ends, I also print the last element and its count because it will not be printed inside the loop
+
+Code:
+class main {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 2, 3, 4, 5, 5, 6, 7, 7};
+        int count = 1;
+        for (int i = 0; i < arr.length-1; i++) {
+            if (arr[i] == arr[i+1]) {
+                count++;
+            }else {
+                System.out.println(arr[i] + " " + count);
+                count = 1;
+            }
+        }
+        System.out.print(arr[arr.length-1] + " " + count);
+    }
+}
