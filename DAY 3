@@ -1,0 +1,133 @@
+Q. Find the missing number (1 to N).
+
+Solution: To find a missing number in a sequence,
+I use the formula for the sum of the first n natural numbers:
+n × (n + 1) / 2.
+Since one number is missing, I first calculate what the total sum should be. To do this,
+I take the array length and add 1 to get n, because one value is absent from the sequence.
+Then I compute the actual sum of all the numbers present in the array.
+Finally, the difference between the expected sum and the actual sum gives me the missing number.
+
+Code:
+class main{
+    public static void main(String[] args){
+        int[] arr = {1, 2, 3, 4, 6};
+        int n = arr.length + 1;
+        int num = (n) * (n + 1)/2;
+        int arrSum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            arrSum += arr[i];
+        }
+        int misNum = num - arrSum;
+        System.out.print("The missing number is : " + misNum);
+    }
+}
+
+Q. Move all zeros to the end.
+
+Solution: To move all zeros to the end,
+I first initialize an index variable that keeps track of where the next non-zero element should go. 
+Then I iterate through the array once and whenever I find a non-zero value,
+I place it at the current index and increase the index by one. This collects all non-zero elements at the beginning of the array in the same order.
+After that, for the remaining positions from the current index to the end of the array, I run a while loop and fill all of them with zero. 
+This gives me the final array where all non-zero elements come first and all zeros are moved to the end.
+
+Code:
+class main{
+    public static void main(String[] args){
+        int[] arr = {1, 0, 2, 3, 0, 4, 6};
+        int index = 0;
+        
+        for ( int i = 0; i < arr.length; i++ ) {
+            if (arr[i] != 0) {
+            arr[index] = arr[i];
+            index++;
+            }
+        }
+        
+        while (index < arr.length){
+            arr[index] = 0;
+            index++;
+        }
+        
+        for ( int i = 0; i < arr.length; i++ ) {
+            System.out.print( arr[i] + " ");
+        }
+     
+    }
+}
+
+Q. Sort 0s, 1s, 2s (Dutch National Flag Problem).
+
+Solution: To sort  0s, 1s, 2s 
+
+Code:
+class main{
+    public static void main(String[] args){
+        int[] arr = {1, 0, 2, 1, 0, 1, 2, 0};
+        int low = 0;
+        int mid = 0;
+        int high = arr.length - 1;
+         
+        while (mid <= high){
+            
+            if (arr[mid] == 0) {
+                
+                int temp = arr[low];
+                arr[low] = arr[mid];
+                arr[mid] = temp;
+                
+                mid++;
+                low++;
+                
+            } else if (arr[mid] == 1) {
+                mid++;
+                
+            } else {
+                
+                int temp = arr[high];
+                arr[high] = arr[mid];
+                arr[mid] = temp;
+                high--;
+                
+            }
+        }
+        
+        for ( int i = 0; i < arr.length; i++ ) {
+            System.out.print( arr[i] + " ");
+        }
+     
+    }
+}
+
+Q. Maximum subarray sum (Kadane’s Algorithm)
+
+Solution: To find the maximum subarray sum,
+we keep adding the numbers as we go through the array. If the total becomes the highest so far,
+we consider it as our answer. But if the total turns negative, we stop and start again from the next number,
+because a negative total will only reduce the sum of any new subarray.
+
+Code: 
+class main{
+    public static void main(String[] args){
+        int[] arr = {-1, 5, -3, 7, -1};
+        
+        int currSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        
+        for (int i = 0; i < arr.length; i++) {
+            currSum+= arr[i];
+            
+            if (currSum > maxSum) {
+               maxSum = currSum;
+            }
+            
+            if (currSum < 0) {
+                currSum = 0;
+            }
+            
+        }
+        System.out.print("The max subarray sum : " + maxSum);
+     
+    }
+}
